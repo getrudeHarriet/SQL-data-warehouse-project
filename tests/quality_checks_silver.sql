@@ -1,3 +1,24 @@
+/*
+=============================================================================
+Quality Checks
+============================================================================+
+Script Purpose:
+  This script perfoms various quality checks for data consistency, accuracy
+  and standardization accross the silver schema.
+  It includes  checks for:
+	- Null or duplicate primary keys.
+	- Unwanted spaces in string fields.
+	- Data Standardization and consistency.
+	- Invalid date ranges and orders.
+	- Data consistency between related fields
+
+Usage Notes:
+Run this checks after data loading in Silver Layer.
+Investigate and resolve any discrepencies found during the checks
+=============================================================================
+*/
+
+
 -- CRM customer info
 SELECT
 *
@@ -46,23 +67,11 @@ ORDER BY sls_sales, sls_quantity, sls_price
 
 SELECT * FROM silver.crm_sales_info
 
-SELECT
-CASE WHEN cid LIKE 'NAS%' THEN SUBSTRING(cid, 4, LEN(cid))
-	ELSE cid
-END AS cid,
-CASE WHEN bdate > GETDATE() THEN NULL
-	ELSE bdate
-END AS bdate,
-CASE WHEN UPPER(TRIM(gen)) IN ('F', 'FEMALE') THEN 'Female'
-	 WHEN UPPER(TRIM(gen)) IN ('M', 'MALE') THEN 'Male'
-	 ELSE 'n/a'
-END AS gen
-FROM bronze.erp_cust_az12
 
 -- Identify out of range dates
 SELECT DISTINCT
 bdate
-FROM bronze.erp_cust_az12
+FROM silver.erp_cust_az12
 WHERE bdate < '1924-01-01' OR bdate > GETDATE()
 
 -- Gender Data Standardization and Consistency
@@ -92,7 +101,7 @@ CASE WHEN TRIM(cntry) = 'DE' THEN 'Germany'
 	 WHEN TRIM(cntry) = '' OR cntry IS NULL THEN 'n/a'
 	 ELSE TRIM(cntry)
 END AS cntry
-FROM bronze.erp_loc_a101
+FROM silver.erp_loc_a101
 ORDER BY cntry
 
 -- Clean the last table in the bronze layer
@@ -101,16 +110,16 @@ id,
 cat,
 subcat,
 maintenance
-FROM bronze.erp_px_cat_g1v2
+FROM silver.erp_px_cat_g1v2
 
 -- Check for unwanted spaces
-SELECT * FROM bronze.erp_px_cat_g1v2
+SELECT * FROM silver.erp_px_cat_g1v2
 WHERE cat != TRIM(cat) OR subcat != TRIM(subcat) OR maintenance != TRIM(maintenance)
 
 -- Data Standardization and Consistency
 SELECT DISTINCT
 maintenance
-FROM bronze.erp_px_cat_g1v2
+FROM silver.erp_px_cat_g1v2
 
 SELECT * FROM silver.erp_px_cat_g1v2
 
