@@ -1,6 +1,6 @@
 # SQL Data Warehouse & Analytics Project  
 
-This project demonstrates how to design and implement a **modern SQL-based data warehouse** that ingests data from multiple operational systems, applies a **medallion architecture (bronze, silver, gold)** for structured data processing, and serves **analytics-ready datasets** for visualization and reporting.  
+This project designs and implements a **modern SQL-based data warehouse** that ingests data from multiple operational systems, applies a **medallion architecture (bronze, silver, gold)** for structured data processing, and serves **analytics-ready datasets** for visualization and reporting.  
 
 ---
 
