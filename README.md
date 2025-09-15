@@ -22,7 +22,7 @@ This project designs and implements a **modern SQL-based data warehouse** that i
 ---
 
 ## 🏗️ Data Flow  
-![Data Architecture]()  
+![Data Architecture](https://github.com/getrudeHarriet/SQL-data-warehouse-project/blob/main/docs/Data%20architect.drawio.png)  
 
 #### Specifications
 - **Data Sources**: Import data from two source systems (ERP and CRM) provided as CSV files.
