@@ -22,16 +22,7 @@ This project designs and implements a **modern SQL-based data warehouse** that i
 ---
 
 ## 🏗️ Data Flow  
-
-```mermaid
-flowchart LR
-    CRM[CRM Data] --> Bronze[Bronze Layer: Raw]
-    ERP[ERP Data] --> Bronze
-    Bronze --> Silver[Silver Layer: Cleansed & Joined]
-    Silver --> Gold[Gold Layer: Business-Ready Models]
-    Gold --> Reports[Dashboards & Reports]
-    Gold --> SQL[Ad-hoc SQL Queries]
-```
+![Data Architecture]()  
 
 #### Specifications
 - **Data Sources**: Import data from two source systems (ERP and CRM) provided as CSV files.
