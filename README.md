@@ -5,24 +5,36 @@ This project designs and implements a **modern SQL-based data warehouse** that i
 ---
 
 ## 📂 Project Overview  
+This project involves the following processes
 
 - **Sources:**  
   - **CRM System** – Customer and sales-related data (e.g., leads, opportunities, accounts).  
   - **ERP System** – Finance, inventory, and order-related data.  
 
-- **Data Warehouse Architecture:**  
+- **Data Warehouse Architecture:**
+- Designing a modern data warehouse using medallion architecture
+
+- **ETL Pipelines:**
+- Extracting, transforming and loading data from source systems into the warehouse.
+
+- **Data Modelling:**
+- Designing fact and dimension tables optimized for analytical queries
+  
+- **Analyticss and Reporting:**  
+  - Creating SQL-based reports and dashboards for actionable insights.  
+
+---
+
+## 🏗️ Data Architecture
+The data architecture for this project follows the Medallion Architecture Bronze, Silver and Gold layers.
+
+![Data Architecture](https://github.com/getrudeHarriet/SQL-data-warehouse-project/blob/main/docs/Data%20architect.drawio.png)  
+ 
   - **Bronze Layer (Raw Zone):** Stores raw ingested data in its original form with minimal transformations.  
   - **Silver Layer (Cleansed Zone):** Cleans, standardizes, and integrates CRM & ERP data into well-structured tables.  
   - **Gold Layer (Business Layer):** Aggregates and models data into fact and dimension tables for analytics and reporting.  
 
-- **Consumers:**  
-  - Visualization and BI tools (Power BI, Tableau, or Looker).  
-  - SQL-based ad-hoc analysis for stakeholders.  
 
----
-
-## 🏗️ Data Flow  
-![Data Architecture](https://github.com/getrudeHarriet/SQL-data-warehouse-project/blob/main/docs/Data%20architect.drawio.png)  
 
 #### Specifications
 - **Data Sources**: Import data from two source systems (ERP and CRM) provided as CSV files.
